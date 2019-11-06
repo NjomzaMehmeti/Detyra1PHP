@@ -2,12 +2,15 @@
 REQUIRE_ONCE(__DIR__.'/connect_database.php');
 
 
+
 $connect->select_db("MyDatabase");
 
 //check conn
 if($connect === false){
     die("ERROR: Could not connect. " . $connect->connect_error);
 }
+
+
 
 $nm_error ="";
 $mb_error = "";
@@ -99,10 +102,12 @@ if($connect->query($sql) === true){
 $sql = "SELECT id,firstname,surname,email,telnumber,mesazhi from UserInfo";
 $res = $connect->query($sql);
 if ($res->num_rows > 0) {
-    echo "<table><tr><th>ID</th><th>Name</th></th><th>Email</th></th><th>Tel Number</th></th><th>Message</th></tr>";
+    
+    echo '<table class ="tab_output"><tr class="tr_style"><th>ID</th><th>Name</th></th><th>Email</th></th><th>Tel Number</th></th><th>Message</th></tr>';
     // output data of each row
     while($row = $res->fetch_assoc()) {
-     echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." ".$row["surname"]."</td><td>".$row["email"]."</td><td>".$row["telnumber"]."</td><td>".$row["mesazhi"]."</td></tr>";
+     echo "<tr class='dboutput'><td>".$row["id"]."</td><td>".$row["firstname"].
+     " ".$row["surname"]."</td><td>".$row["email"]."</td><td>".$row["telnumber"]."</td><td>".$row["mesazhi"]."</td></tr>";
     }
     echo "</table>";
 } else {

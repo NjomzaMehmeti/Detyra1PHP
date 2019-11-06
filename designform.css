@@ -1,11 +1,22 @@
 
-
+.tab_output {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+.tr_style {
+  border:2px solid rgb(139, 50, 167);
+  border-collapse: collapse;
+}
+.dboutput{
+  border: 2px solid rgb(53, 16, 51);
+  border-collapse: collapse;
+}
 
 input[type=text], select, textarea {
     
     width: 35%; 
     padding: 12px;  
-    border: 1px solid #ccc; 
+    border: 1px solid rgb(140, 107, 155); 
     border-radius: 4px; 
     box-sizing: border-box; 
     margin-top: 6px; 
@@ -16,7 +27,7 @@ input[type=text], select, textarea {
   input[type=email] {
     width: 35%; 
     padding: 12px; 
-    border: 1px solid #ccc;
+    border: 1px solid rgb(140, 107, 155);
     border-radius: 4px;
     box-sizing: border-box; 
     margin-top: 6px; 
@@ -26,7 +37,7 @@ input[type=text], select, textarea {
 
   
   input[type=submit] {
-    background-color: #4CAF50;
+    background-color: rgb(158, 76, 175);
     color: white;
     padding: 12px 20px;
     border: none;
@@ -36,5 +47,6 @@ input[type=text], select, textarea {
 
 
   input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #9c00e4;
   }
+  /* #45a049 */
