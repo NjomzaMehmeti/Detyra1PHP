@@ -2,9 +2,7 @@
 REQUIRE_ONCE(__DIR__.'/connect_database.php');
 
 
-
 $connect->select_db("MyDatabase");
-
 
 //check conn
 if($connect === false){
@@ -33,43 +31,6 @@ if(!empty($_POST['sub'])){
 }
 
 }
-
-if(isset($_POST['sub'])){
-
-    $name = $_POST['em'];
-    $surname = $_POST['mb']; 
-    $email = $_POST['email'];
-    $tel = $_POST['phonenr'];
-    $message = $_POST['txtarea'];
-}
-
-
-//SQL STATEMENTS
-
-$sql = "INSERT INTO UserInfo (id,firstname,surname,email,telnumber,mesazhi) VALUES ('','$name','$surname','$email','$tel','$message')";
-if($connect->query($sql) === true){
-    echo "Records inserted successfully.";
-} else{
-    echo "ERROR: Could not able to execute $sql. " . $connect->error;
-}
-
-
-$sql = "SELECT id,firstname,surname,email,telnumber,mesazhi from UserInfo";
-$res = $connect->query($sql);
-if ($res->num_rows > 0) {
-    echo "<table><tr><th>ID</th><th>Name</th></tr>";
-    // output data of each row
-    while($row = $res->fetch_assoc()) {
-     echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." ".$row["surname"]."</td><td>".$row["email"]."</td><td>".$row["telnumber"]."</td><td>".$row["mesazhi"]."</td></tr>";
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
-$connect->close();
-
-
-
 
 
 ?>
@@ -106,6 +67,7 @@ Message:<br>
 </html>
 
 <?php 
+
 if(isset($_POST['em']))
 $name = "Name: {$_POST['em']}.\n";
 if(isset($_POST['mb']))
@@ -120,6 +82,37 @@ $rezultati = $name.$surname.$email.$tel.$message;
 echo nl2br($rezultati, false);
 
 
+
+
+//SQL STATEMENTS
+if(isset($_POST['sub'])){
+$sql = "INSERT INTO UserInfo (id,firstname,surname,email,telnumber,mesazhi) VALUES ('','$_POST[em]','$_POST[mb]','$_POST[email]',
+'$_POST[phonenr]','$_POST[txtarea]')";
+if($connect->query($sql) === true){
+    echo "Records inserted successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . $connect->error;
+}
+}
+
+
+$sql = "SELECT id,firstname,surname,email,telnumber,mesazhi from UserInfo";
+$res = $connect->query($sql);
+if ($res->num_rows > 0) {
+    echo "<table><tr><th>ID</th><th>Name</th></th><th>Email</th></th><th>Tel Number</th></th><th>Message</th></tr>";
+    // output data of each row
+    while($row = $res->fetch_assoc()) {
+     echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." ".$row["surname"]."</td><td>".$row["email"]."</td><td>".$row["telnumber"]."</td><td>".$row["mesazhi"]."</td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 results";
+}
+$connect->close();
+
+
+
+//Email Address
 if(isset($_POST['sub']) && isset($_POST['em']) && isset($_POST['mb']) && isset($_POST['email']) && isset($_POST['phonenr']) && isset($_POST['txtarea'])){
  
     $name = $_POST['em'];
@@ -138,6 +131,7 @@ if(isset($_POST['sub']) && isset($_POST['em']) && isset($_POST['mb']) && isset($
     echo "Mail Sent. Thank you " . $name . ", your email has been received.";
 
     }
+  
 
 ?>
 

@@ -16,7 +16,7 @@ echo "Connection estalished succsessfully";
 $connect->select_db("MyDatabase");
 
 
-$create_UserInfo ="CREATE TABLE UserInfo(
+$create_UserInfo ="CREATE TABLE IF NOT EXISTS UserInfo(
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     firstname varchar(100) NOT NULL,
     surname varchar(100) NOT NULL,
@@ -36,6 +36,6 @@ if($connect->query($create_UserInfo) === TRUE){
 
 else {
 
-    printf("Error on execiting query %s",$connect->error);
+    printf("Error on executing query %s",$connect->error);
 }
 ?>

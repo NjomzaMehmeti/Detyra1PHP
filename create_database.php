@@ -15,7 +15,7 @@ echo "Connection estalished succsessfully";
 
 $connect->select_db("MyDatabase");
 
- $create_db = "CREATE DATABASE MyDatabase";
+ $create_db = "CREATE DATABASE IF NOT EXISTS MyDatabase";
 
  if($connect->query($create_db) === TRUE){
 
